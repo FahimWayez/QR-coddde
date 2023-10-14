@@ -1,6 +1,8 @@
+#install pip in your computer if not already installed, and then run the following code in the command prompt
+#pip install qrcode[pil]
+
 import qrcode 
 from PIL import Image
-import matplotlib.pyplot as plt
 
 data = input("Enter the data to encode: ")
 
@@ -12,10 +14,7 @@ qr = qrcode.QRCode(
 )
 qr.add_data(data)
 qr.make(fit=True)
-qr_code = qr.make_image(fill_color="black", back_color="white")
+qrCode = qr.make_image(fill_color="black", back_color="white")
 
-qr_code.save("generated_qr_code.png")
-
-plt.imshow(qr_code)
-plt.axis('off')
-plt.show()
+filename = f"{data}.png"
+qrCode.save(filename)
