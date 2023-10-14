@@ -3,8 +3,10 @@
 
 import qrcode 
 from PIL import Image
+import re
 
 data = input("Enter the data to encode: ")
+sanitizedData = re.sub(r'[\\/:*?"<>|]', '_', data)
 
 qr = qrcode.QRCode(
     version=1,
@@ -16,5 +18,5 @@ qr.add_data(data)
 qr.make(fit=True)
 qrCode = qr.make_image(fill_color="black", back_color="white")
 
-filename = f"{data}.png"
+filename = f"{sanitizedData}.png"
 qrCode.save(filename)
